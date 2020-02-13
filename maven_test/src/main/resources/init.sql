@@ -1,6 +1,6 @@
-drop table if exits file_meta;
+drop table if exists file_meta;
 
-create table if not exits file_metal(
+create table if not exists file_metal(--创建表操作
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name VARCHAR(50) NOT NULL,
       path VARCHAR(1000) NOT NULL,
