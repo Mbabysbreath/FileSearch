@@ -40,8 +40,9 @@ public class PinyinUtil {
      * @param name
      * @return
      */
-    public static  boolean contaionsChinese(String name){
-        return name.matches(".*"+CHINESE_PATTERN+",*");
+    public static  boolean containsChinese(String name){
+
+        return name.matches(".*"+CHINESE_PATTERN+".*");
     }
     /**
      * 通过文件名获取全拼+拼音首字母

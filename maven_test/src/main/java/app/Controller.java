@@ -13,7 +13,9 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Window;
 import task.DBinit;
+import task.FileSave;
 import task.FileScanner;
+import task.ScanCallback;
 import util.DBUtil;
 
 import java.io.File;
@@ -68,12 +70,21 @@ public class Controller implements Initializable {
 
             @Override
             public void run() {
-                System.out.println("执行文件扫描任务");
-                new FileScanner().scan(path);//为了提高效率，多线程执行扫描任务
-                //等待文件扫描任务执行完毕
-                //TODO
-                //刷新表格，将扫描出来的子文件及子文件夹都展示在表格里
-                freshTable();
+                try {
+                    System.out.println("执行文件扫描任务");
+                    ScanCallback callback=new FileSave();//文件扫描回调接口，做文件夹下一级子文件和文件夹保存数据库的操作
+                    FileScanner scanner=new FileScanner(callback);
+                    //为了提高效率，多线程执行扫描任务
+                    scanner.scan(path);
+                    //等待文件扫描任务执行完毕
+                    scanner.waitFinish();
+                    System.out.println("任务执行完毕，结束打印");
+                    //TODO
+                    //刷新表格，将扫描出来的子文件及子文件夹都展示在表格里
+                    freshTable();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
         task.start();

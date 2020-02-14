@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Sqlite (Xerial) - everything-like.db [2]" uuid="ed2ca6d8-10de-4298-a7b9-24d9a71bcc56">
+    <data-source source="LOCAL" name="Sqlite (Xerial) - everything-like.db" uuid="30d600e9-aefd-4d57-ae43-475d69992d61">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\everything-like\maven_test\target\everything-like.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/maven_test/target/everything-like.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>

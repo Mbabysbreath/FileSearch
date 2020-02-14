@@ -87,12 +87,11 @@ public class DBUtil {
         return getDataSource().getConnection();
      }
 
-    public static void main(String[] args) throws SQLException {
-        System.out.println(getConnection());
-    }
+
 
     public static void close(Connection connection, Statement statement) {
-        close(connection, statement, null);
+
+         close(connection, statement, null);
     }
 
     /**
@@ -116,5 +115,9 @@ public class DBUtil {
             e.printStackTrace();
             throw new RuntimeException("释放数据库资源失败",e);
         }
+    }
+
+    public static void main(String[] args) throws SQLException {
+        System.out.println(getConnection());
     }
 }
