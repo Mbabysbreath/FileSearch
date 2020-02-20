@@ -62,24 +62,30 @@ public class Controller implements Initializable {
         // 获取选择的目录路径，并显示
         String path = file.getPath();
 
-        // TODO
         srcDirectory.setText(path);
 
         //选择了目录，就需要执行目录的扫描任务：将该目录下的所有的子文件和子文件夹都扫描出来
+        if (task != null) {
+            task.interrupt();
+        }
         task=new Thread(new Runnable(){
 
             @Override
             public void run() {
+                //文件扫描回调接口，做文件夹下一级子文件和文件夹保存数据库的操作
+                ScanCallback callback=new FileSave();
+                FileScanner scanner=new FileScanner(callback);
                 try {
                     System.out.println("执行文件扫描任务");
-                    ScanCallback callback=new FileSave();//文件扫描回调接口，做文件夹下一级子文件和文件夹保存数据库的操作
-                    FileScanner scanner=new FileScanner(callback);
+
                     //为了提高效率，多线程执行扫描任务
                     scanner.scan(path);
-                    //等待文件扫描任务执行完毕
-                    scanner.waitFinish();
-                    System.out.println("任务执行完毕，结束打印");
                     //TODO
+                    //等待文件扫描任务执行完毕,即需要阻塞等待
+                   // System.out.println("等待扫描任务结束："+path);
+                    scanner.waitFinish();
+                    System.out.println("任务执行完毕，刷新表格文件");
+
                     //刷新表格，将扫描出来的子文件及子文件夹都展示在表格里
                     freshTable();
                 } catch (InterruptedException e) {
