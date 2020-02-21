@@ -112,4 +112,33 @@ public class FileMeta {
     public void setDirectory(Boolean directory) {
         isDirectory = directory;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FileMeta fileMeta = (FileMeta) o;
+
+        if (name != null ? !name.equals(fileMeta.name) : fileMeta.name != null) return false;
+        if (path != null ? !path.equals(fileMeta.path) : fileMeta.path != null) return false;
+        return isDirectory != null ? isDirectory.equals(fileMeta.isDirectory) : fileMeta.isDirectory == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (path != null ? path.hashCode() : 0);
+        result = 31 * result + (isDirectory != null ? isDirectory.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "FileMeta{" +
+                "name='" + name + '\'' +
+                ", path='" + path + '\'' +
+                ", isDirectory=" + isDirectory +
+                '}';
+    }
 }

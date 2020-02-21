@@ -43,7 +43,7 @@ public class DBUtil {
                      SQLiteConfig config = new SQLiteConfig();
                      config.setDateStringFormat(Util.DATA_PATTERN);
                      //初始化操作
-                     DATA_SOURCE = new SQLiteDataSource();
+                     DATA_SOURCE = new SQLiteDataSource(config);
                      ((SQLiteDataSource) DATA_SOURCE).setUrl(getUrl());
                  }
              }

@@ -101,5 +101,10 @@ public class Controller implements Initializable {
         ObservableList<FileMeta> metas = fileTable.getItems();
         metas.clear();
         // TODO
+        //如果选择了某个目录，代表需要再根据搜索框的内容，来进行数据库文件信息的查询
+        String dir = srcDirectory.getText();
+        if (dir != null && dir.trim().length() != 0) {
+            String content = searchField.getText();
+        }
     }
 }
