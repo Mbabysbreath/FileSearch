@@ -12,14 +12,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Window;
-import task.DBinit;
-import task.FileSave;
-import task.FileScanner;
-import task.ScanCallback;
+import task.*;
 import util.DBUtil;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Collection;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -100,11 +99,18 @@ public class Controller implements Initializable {
     private void freshTable(){
         ObservableList<FileMeta> metas = fileTable.getItems();
         metas.clear();
-        // TODO
         //如果选择了某个目录，代表需要再根据搜索框的内容，来进行数据库文件信息的查询
         String dir = srcDirectory.getText();
         if (dir != null && dir.trim().length() != 0) {
             String content = searchField.getText();
+            //提供数据库的查询方法
+            List<FileMeta> fileMetas= FileSearch.search(dir,content);
+            // Collection-->List/Set-->ArrayList+LinkedList/HashSet+TreeSet
+            //Map-->HashMap/Hashtable/TreeMap
+            metas.addAll(fileMetas);
         }
+
+        //-->方法返回后javaFx表单做什么？
+        //通过反射获取fileMetas类型中的属性（app.fxml文件中定义的属性
     }
 }

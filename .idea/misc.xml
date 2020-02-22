@@ -22,7 +22,6 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/maven_test/pom.xml" />
-        <option value="$PROJECT_DIR$/everythings/pom.xml" />
       </list>
     </option>
   </component>

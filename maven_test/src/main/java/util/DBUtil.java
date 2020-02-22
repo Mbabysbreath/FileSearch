@@ -31,7 +31,7 @@ public class DBUtil {
      * 为什么DataSource类变量要使用volatile关键字修饰
      * 多线程操作：原子性、可见性、有序性
      * synchronized保证：三个特性
-     * volatile:保证可见性、有序性
+     * volatile:保证可见性、有序性(禁止指令重排序)
      */
      private static DataSource getDataSource(){
          if(DATA_SOURCE==null){//提高效率

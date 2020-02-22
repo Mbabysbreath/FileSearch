@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/everything-like.iml" filepath="$PROJECT_DIR$/everything-like.iml" />
-      <module fileurl="file://$PROJECT_DIR$/everythings/everythings.iml" filepath="$PROJECT_DIR$/everythings/everythings.iml" />
       <module fileurl="file://$PROJECT_DIR$/maven_test/maven_test.iml" filepath="$PROJECT_DIR$/maven_test/maven_test.iml" />
     </modules>
   </component>

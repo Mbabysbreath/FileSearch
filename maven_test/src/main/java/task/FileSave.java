@@ -2,7 +2,6 @@ package task;
 
 import app.FileMeta;
 import util.DBUtil;
-import util.PinyinUtil;
 import util.Util;
 
 import java.io.File;
@@ -132,40 +131,35 @@ public class FileSave implements ScanCallback {
         Connection connection=null;
         PreparedStatement statement=null;
 
-        try {
+            try {
 
-            //1.获取数据库连接
-            connection = DBUtil.getConnection();
-            String sql="insert into file_meta" +
-                    "(name,path,is_directory,size,last_modified,pinyin,pinyin_first) " +
-                    " values(?,?,?,?,?,?,?)";
+                //1.获取数据库连接
+                connection = DBUtil.getConnection();
+                String sql=" insert into file_meta" +
+                        " (name,path,is_directory,size,last_modified,pinyin,pinyin_first) " +
+                        " values(?,?,?,?,?,?,?)";
 
-             //2.获取sql操作命令对象Statement
-            statement=connection.prepareStatement(sql);
-            statement.setString(1, meta.getName());
-            statement.setString(2, meta.getPath());
-            statement.setBoolean(3,meta.getDirectory());
-            statement.setLong(4, meta.getSize());
-            //数据库保存日期类型，可以按数据库设置的日期格式，以字符串传入
-            statement.setString(5, meta.getLastModifiedText());
-            statement.setString(6, meta.getPinyin());
-            statement.setString(7,meta.getPinyinFirst());
+                 //2.获取sql操作命令对象Statement
+                statement=connection.prepareStatement(sql);
+                statement.setString(1, meta.getName());
+                statement.setString(2, meta.getPath());
+                statement.setBoolean(3,meta.getDirectory());
+                statement.setLong(4, meta.getSize());
+                //数据库保存日期类型，可以按数据库设置的日期格式，以字符串传入
+                statement.setString(5, meta.getLastModifiedText());
+                statement.setString(6, meta.getPinyin());
+                statement.setString(7,meta.getPinyinFirst());
 
-            //3.执行sql
-                statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("文件保存失败，检查sql insert语句",e);
-        } finally {
-            DBUtil.close(connection,statement);
-        }
+                //3.执行sql
+                    statement.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException("文件保存失败，检查sql insert语句",e);
+            } finally {
+                DBUtil.close(connection,statement);
+            }
     }
 
     public static void main(String[] args) {
-//        DBinit.init();
-//        File file=new File("C:\\Users\\zhao'min\\Desktop\\精品简历模板");
-//        FileSave fileSave = new FileSave();
-//        fileSave.save(file);
-//        fileSave.query(file.getParentFile());
 
         List<FileMeta> locals=new ArrayList<>();
         locals.add(new FileMeta("你好", "C:\\Users\\zhao'min\\Desktop\\大家好", true,0, new Date()));

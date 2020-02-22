@@ -11,7 +11,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("app.fxml"));
         primaryStage.setTitle("文件搜索");
-        primaryStage.setScene(new Scene(root, 1000, 800));
+        primaryStage.setScene(new Scene(root, 1000, 600));
         primaryStage.show();
     }
     public static void main(String[] args) {
