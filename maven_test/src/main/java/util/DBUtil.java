@@ -68,7 +68,7 @@ public class DBUtil {
         String url=null;
         try {
             //获取DBinit编译文件后的路径，classes用“./” 或“ ” 父类用../但这里到不了父类
-            // 这里如果写../，查询到的路径为null
+            // 这里如果写../ ，查询到的路径为null
             URL classesURL = DBUtil.class.getClassLoader().getResource("./");
             System.out.println("类加载后classes文件的当前路径：" + classesURL);//
 
