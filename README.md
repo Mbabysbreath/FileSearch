@@ -23,7 +23,7 @@
 2.选择目录
 ![选择目录](https://github.com/Mbabysbreath/FileSearch/blob/master/selectP.png)
 3.按关键字查询
-![关键字](https://github.com/Mbabysbreath/FileSearch/blob/master/seaechF.png)
+![关键字](https://github.com/Mbabysbreath/FileSearch/blob/master/searchF.png)
 4.按拼音首字母
 ![拼音首字母](https://github.com/Mbabysbreath/FileSearch/blob/master/searchH.png)
 5.按拼音全拼
