@@ -27,5 +27,5 @@
 4.按拼音首字母
 ![拼音首字母](https://github.com/Mbabysbreath/FileSearch/blob/master/searchH.png)
 5.按拼音全拼
-![拼音全拼](https://github.com/Mbabysbreath/FileSearch/blob/master/selectFP.png)
+![拼音全拼](https://github.com/Mbabysbreath/FileSearch/blob/master/searchFP.png)
 
