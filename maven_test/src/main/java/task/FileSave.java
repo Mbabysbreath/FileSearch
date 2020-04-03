@@ -21,7 +21,11 @@ public class FileSave implements ScanCallback {
         //文件夹下一级子文件和子文件夹保存到数据库
         //获取本地目录下一级子文件和子文件夹
         //集合框架中使用自定义类型，判断是否某个对象在集合存在，比对两个集合中的元素
+        // list()方法是返回某个目录下的所有文件和目录的文件名，返回的是String数组
+        // listFiles()方法是返回某个目录下所有文件和目录的绝对路径，返回的是File数组
        File[] children=dir.listFiles();
+
+        //包装为本地的自定义文件类集合
         List<FileMeta> locals=new ArrayList<>();
         if (children != null) {
             for (File child : children) {
@@ -53,7 +57,7 @@ public class FileSave implements ScanCallback {
 
     }
 
-    public void delete(FileMeta meta) {
+    public void  delete(FileMeta meta) {
         Connection connection=null;
         PreparedStatement ps=null;
         try{
@@ -135,10 +139,9 @@ public class FileSave implements ScanCallback {
 
                 //1.获取数据库连接
                 connection = DBUtil.getConnection();
-                String sql=" insert into file_meta" +
-                        " (name,path,is_directory,size,last_modified,pinyin,pinyin_first) " +
-                        " values(?,?,?,?,?,?,?)";
-
+                String sql = "insert into file_meta" +
+                        "(name, path, is_directory, size, last_modified, pinyin, pinyin_first)" +
+                        " values (?,?,?,?,?,?,?)";
                  //2.获取sql操作命令对象Statement
                 statement=connection.prepareStatement(sql);
                 statement.setString(1, meta.getName());

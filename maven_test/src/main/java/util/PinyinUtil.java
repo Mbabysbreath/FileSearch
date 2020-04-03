@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * PinYinUtil中存放对拼音的相关操作
  * @author zhaomin
  * @date 2020/1/9 19:49
  */
@@ -22,7 +23,7 @@ public class PinyinUtil {
     private static final String CHINESE_PATTERN = "[\\u4E00-\\u9FA5]";
 
     /**
-     * 汉语拼音
+     * 汉语拼音格式化类
      */
     private static final HanyuPinyinOutputFormat FORMAT
             =new HanyuPinyinOutputFormat();
@@ -46,7 +47,7 @@ public class PinyinUtil {
     }
     /**
      * 通过文件名获取全拼+拼音首字母
-     * 中华人民共和国
+     * 中华人民共和国---》zhongghuarenmingongheguo/zhrmghg(不考虑多音字)
      * @param name 文件名
      * @return 拼音全拼字符串+拼音首字母字符串 数组
      */
@@ -86,6 +87,7 @@ public class PinyinUtil {
         String[][] result = new String[chars.length][];
         for(int i=0;i<chars.length;i++){
             try {
+                //去除音调后,会有重复,"只":[zhi,zhi...]---------quchong
                 String[] pinyins
                         = PinyinHelper.toHanyuPinyinStringArray(chars[i], FORMAT);
                 if(pinyins==null||pinyins.length==0){
@@ -120,10 +122,11 @@ public class PinyinUtil {
     return set.toArray(new String[set.size()]);
 }
     /**
+     *  每个中文字符返回的是字符串数组,每两个字符串数组合并为一个字符串数组,之后以此类推
      * [he,hu,huo],[zhang,chang]
      * hezhang,hechang,huzhang,huchang,huozhang,huochang
-     * @param pinyinArray
-     * @return
+     * @param pinyinArray 文件名多音字数组
+     * @return 返回文件名的排列组合
      */
     public static String[] compose(String[][] pinyinArray){
         if(pinyinArray==null||pinyinArray.length==0){

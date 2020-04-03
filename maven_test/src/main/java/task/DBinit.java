@@ -21,26 +21,14 @@ import java.util.List;
 public class DBinit {
 
     public static void init(){
-        /*获取target编译文件夹的路径
-          通过getClassLoader().getResource()
-          /getClassLoader().getResourceAsStream()这样的方法
 
-          默认的根路径为编译文件夹的路径（target/classes）
-         */
-        //获取DBinit编译文件后的路径，classe用./  父类用../但这里到不了父类
-        URL classesURL= DBinit.class.getClassLoader().getResource("./");
-        //获取target/classes文件夹的父目录路径target
-        String dir = new File(classesURL.getPath()).getParent();
-        String url="jdbc:sqlite://"+dir+File.separator+"everything-like.db";
-        System.out.println(url);
         /*数据库jdbc操作，sql语句的执行*/
-
         Connection connection=null;
         Statement statement = null;
         try {
             //1.建立数据库连接Connection
             connection = DBUtil.getConnection();
-            //2.创建sql语句执行对象Statement
+            //2.创建sql语句执行对象Statement，数据库的操作对象
             statement = connection.createStatement();
             String[] sqls = readSQL();
             for (String sql : sqls) {

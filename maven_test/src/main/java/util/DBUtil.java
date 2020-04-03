@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
+ * 对数据库操作的类
  * @author zhaomin
  * @date 2020/2/12 23:25
  */
@@ -24,7 +25,7 @@ public class DBUtil {
 
     /**
      * 提供获取数据库连接池的功能。
-     * 使用单例模式（多线程版本）
+     * 使用单例模式（多线程安全版本）
      * 回顾：
      * 为什么在外层判读是否等于null
      * synchronized加锁以后，为什么还要判断等于null
@@ -52,10 +53,12 @@ public class DBUtil {
      }
 
     /**
-     * 获取sqlite数据库文件url的方法
+     * 获取sqlite数据库文件url的方法：
+     * "jdbc:sqlite://"+本地文件路径
      * @return
      */
     private static String getUrl(){
+
          /*获取target编译文件夹的路径
           通过getClassLoader().getResource()
           /getClassLoader().getResourceAsStream()这样的方法
@@ -64,11 +67,15 @@ public class DBUtil {
          */
         String url=null;
         try {
-            //获取DBinit编译文件后的路径，classe用./  父类用../但这里到不了父类
-         URL classesURL= DBUtil.class.getClassLoader().getResource("./");
-         //获取target/classes文件夹的父目录路径target
-         String dir = new File(classesURL.getPath()).getParent();
-         url="jdbc:sqlite://"+dir+File.separator+"everything-like.db";
+            //获取DBinit编译文件后的路径，classes用“./” 或“ ” 父类用../但这里到不了父类
+            // 这里如果写../，查询到的路径为null
+            URL classesURL = DBUtil.class.getClassLoader().getResource("./");
+            System.out.println("类加载后classes文件的当前路径：" + classesURL);//
+
+            //获取target/classes文件夹的父目录路径target
+            String dir = new File(classesURL.getPath()).getParent();
+            //File.separator---文件的分隔符，解决不同系统间隔符不同的兼容性问题
+            url="jdbc:sqlite://"+dir+File.separator+"everything-like.db";
             url= URLDecoder.decode(url,"UTF-8");
         } catch (UnsupportedEncodingException e) {
             System.out.println("获取数据库文件路径失败");

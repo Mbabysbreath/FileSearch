@@ -1,7 +1,9 @@
 package util;
 
 import java.text.SimpleDateFormat;
-import java.util.Date; /**
+import java.util.Date;
+
+/**Util工具类中添加数据转化的方法
  * @author zhaomin
  * @date 2020/2/13 0:57
  */

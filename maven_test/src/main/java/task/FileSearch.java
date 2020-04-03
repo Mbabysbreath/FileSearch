@@ -26,9 +26,9 @@ public class FileSearch {
             connection = DBUtil.getConnection();
             String sql="select name,path,is_directory,size,last_modified" +
                     " from file_meta where " +
-                    " path=? or path like ?";
+                    " (path=? or path like ?)";
             if (content != null && content.trim().length() != 0) {
-                sql+=" and name like ? or pinyin like ? or pinyin_first like ?";
+                sql+=" and (name like ? or pinyin like ? or pinyin_first like ?)";
             }
             ps = connection.prepareStatement(sql);
             //占位符设值
@@ -54,6 +54,8 @@ public class FileSearch {
                 metas.add(meta);
 
             }
+
+
         } catch (Exception e) {
             throw new RuntimeException("数据库文件查询失败,路径："+dir+",搜索内容："+content,e);
         } finally {
