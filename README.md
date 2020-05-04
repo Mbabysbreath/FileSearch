@@ -19,6 +19,13 @@
 3.文件名包含中文时，支持汉语拼音的搜索（全拼或是首字母匹配）  
 ### 五、项目成果展示
 1.开始
-![Start](https://github.com/Mbabysbreath/FileSearch/blob/master/Start.png)
-2.结果
-![Result](https://github.com/Mbabysbreath/FileSearch/blob/master/Result.png)
+![Start](https://github.com/Mbabysbreath/FileSearch/blob/master/startP.png)
+2.选择目录
+![选择目录](https://github.com/Mbabysbreath/FileSearch/blob/master/selectP.png)
+3.按关键字查询
+![关键字](https://github.com/Mbabysbreath/FileSearch/blob/master/searchF.png)
+4.按拼音首字母
+![拼音首字母](https://github.com/Mbabysbreath/FileSearch/blob/master/searchH.png)
+5.按拼音全拼
+![拼音全拼](https://github.com/Mbabysbreath/FileSearch/blob/master/searchFP.png)
+
